@@ -1,0 +1,52 @@
+#home{
+    color: black;
+}
+
+.section{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+
+    padding: 10px;
+}
+
+.island-photo{
+    background-image: url("https://s1.feelgreece.com/cx/m/0/0/977/140827-viewos.jpg");
+    background-size: cover;
+
+    width: 50%;
+    height: 200px;
+    background-color: blueviolet;
+
+    border-radius: 10px;
+}
+
+.history>h2,
+.description>h2{
+font-weight: 100;
+}
+
+.description>h4{
+    font-size: 16px;
+    line-height: 5px;
+    font-weight: 100;
+}
+
+.description>p{
+    margin-top: 20px;}
+
+.description{
+    width: 40%;
+    font-size: 12px;
+}
+
+
+.history>p{
+    font-size: 12px;
+}
+
+.history>h3{
+    font-size: 16px;
+    line-height: 5px;
+    font-weight: 600;
+}

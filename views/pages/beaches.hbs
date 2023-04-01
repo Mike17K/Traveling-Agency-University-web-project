@@ -1,0 +1,27 @@
+<div class="page-description c-3" >
+    Δείτε σε χάρτη όλες τις παραλίες της Αίγινας<span>+</span>
+</div>
+
+<div class="map hidden-map"></div>
+
+<div class="beaches-list-wrapper">
+
+{{#each data}}
+
+<div class="beach-item">
+
+<img src="{{this.img}}" alt="beach photo" class="image">
+
+<div class="text-wrapper">
+
+<p class="title">{{this.title}}</p>
+<p class="organized">{{this.organized}}</p>
+<p class="location">{{this.location}}</p>
+<p class="direction">{{this.direction}}</p>
+</div>
+
+</div>
+
+{{/each}}
+
+</div>

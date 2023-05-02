@@ -1,11 +1,45 @@
 const express = require('express');
 const router = express.Router();
 
+let isLogedIn = true;
+
 // here all the diferent pages are rendered
 router.get('/', (req, res) => {
-    res.render('pages/home', {style:'home.css',title:"home page",script:"home.js"});
+    res.render('pages/home', {style:'home.css',title:"home page",script:"home.js",isLogedIn:isLogedIn});
 }
 );
+
+router.get('/signin', (req, res) => {
+    res.render('pages/signin', {style:'signin.css',title:"login page",script:"signin.js",isLogedIn:false});
+});
+
+router.get('/signup', (req, res) => {
+    res.render('pages/signup', {style:'signup.css',title:"signup page",script:"signup.js",isLogedIn:false});
+});
+
+router.get('/logout', (req, res) => {
+    isLogedIn = false;
+    res.redirect('/');
+});
+
+router.post('/logingIn', (req, res) => {
+    // make here the logic for loging in here
+    oauth = true;
+    if(!oauth){
+        res.redirect('/signup');
+        return
+    }
+    isLogedIn = true;
+    res.redirect('/');
+});
+
+router.post('/registeruser', (req, res) => {
+    // make here the logic
+
+    isLogedIn = true;
+    res.redirect('/');
+});
+
 
 router.get('/Beaches', (req, res) => {
     // fetch data from server 

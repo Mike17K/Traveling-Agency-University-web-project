@@ -5,6 +5,10 @@
     display: flex;
 }
 
+.hide{
+    display: none !important;
+}
+
 a{
     color:white;
 }

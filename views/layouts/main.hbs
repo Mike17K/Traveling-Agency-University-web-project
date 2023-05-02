@@ -13,7 +13,8 @@
 
 <body>
    
-    {{> navbar}}
+    {{> navbar _isLogedIn=isLogedIn}}
+    
     <div class="maincontent">
         {{{body}}}
     </div>

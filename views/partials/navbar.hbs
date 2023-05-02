@@ -1,25 +1,26 @@
-
-
-
 <div class="navbarone">
-<div class="firstbox c-1"></div>
+  <div class="firstbox c-1"></div>
 
-<div class="middle">
-<div class="logo c-2"></div>
+  <div class="middle">
+    <div class="logo c-2"></div>
     <div class="mainmiddle c-1">
 
-<a class="item" id="signin" href="/signin">sign in</a>
-<a class="item" id="signup" href="/signup">sign up</a>
-<a class="item" id="lang" href="">en/gr</a>
+      {{#if _isLogedIn}}
+        <a class="item" id="logout" href="/logout">log out</a>
+      {{else}}
+        <a class="item" id="signin" href="/signin">sign in</a>
+        <a class="item" id="signup" href="/signup">sign up</a>
+      {{/if}}
+
+      <a class="item" id="lang" href="">en/gr</a>
     </div>
-</div>
+  </div>
 
-<div class="lastbox c-1"></div>
+  <div class="lastbox c-1"></div>
 </div>
-
 
 <div class="navbar-wrapper mt-2 c-1">
-<div class="mynavbar">
+  <div class="mynavbar">
     <a class="item" id="home" href="/">
       Home
     </a>
@@ -33,14 +34,13 @@
       Food/Fun
     </a>
     <a class="item" id="hotels" href="/Hotels">
-Hotels
+      Hotels
     </a>
-    <a class="item" id="events"  href="/Events">
-Events
+    <a class="item" id="events" href="/Events">
+      Events
     </a>
     <a class="item" id="contactus" href="/ContactUs">
-Contact Us
+      Contact Us
     </a>
   </div>
 </div>
-

@@ -46,7 +46,34 @@ async function validateUser({username,password}) {
   });
 }
 
+
+async function addUser({username,password,re_password}) {
+  "  Validate user by name and password  "
+  if (!isDbAvailable) {
+    console.error('Database is not available');
+    return false;
+  }
+  // here have to check if the user already exists
+  // and check if password and re_password are the same
+  // also for sql injection for username and password
+
+  return await new Promise((resolve, reject) => {
+    connection.query(`INSERT INTO users(name,password) VALUES ('${username}','${password}')`, (err, results) => {
+      if (err) {
+        console.error('Failed to execute query:', err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  });
+}
+
+
+
+
 module.exports = {
-  validateUser
+  validateUser,
+  addUser
 };
 

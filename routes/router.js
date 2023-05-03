@@ -1,4 +1,4 @@
-const {validateUser} = require('../config/database');
+const {validateUser,addUser} = require('../config/database');
 const express = require('express');
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.get('/signin', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    res.render('pages/signup', {style:'signup.css',title:"signup page",script:"signup.js",isLogedIn:false});
+    res.render('pages/signup', {style:'signup.css',title:"signup page",script:"signup.js",isLogedIn:false,alertMessage: req.flash('alertMessage')});
 });
 
 router.get('/logout', (req, res) => {
@@ -42,9 +42,17 @@ router.post('/logingIn', (req, res) => {
 
 router.post('/registeruser', (req, res) => {
     // make here the logic
-    
-    isLogedIn = true;
-    res.redirect('/');
+    addUser(req.body).then(
+        isLogedInRes=>{
+        if (isLogedInRes) {
+            isLogedIn = true;
+            res.redirect('/');
+        } else {
+            req.flash('alertMessage', 'Error singin up')
+            res.redirect('/signup');
+        }
+    }
+    );
 });
 
 

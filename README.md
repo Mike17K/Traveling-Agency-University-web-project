@@ -1,5 +1,8 @@
 ### Run
 
+u have to have a local mysql database running with the name **WebProjectDb** and
+a table users as defined in the /config/db_setup.sql
+
 To run the program
 
 ```

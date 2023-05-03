@@ -21,3 +21,11 @@ Partials are snippets which can be shared between pages, such as navigation.
 A Context is content which is passed to templates and result in being the page's content
 
 Helpers are the closest we get to logic in Handlebars: these allow us to display or omit content based on conditionals such as if statements. For example: showing an author's avatar only if they have uploaded an image.
+
+## Trubleshooting
+
+error: Client does not support authentication protocol requested by server; consider upgrading MySQL client
+
+solution:
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+flush privileges;

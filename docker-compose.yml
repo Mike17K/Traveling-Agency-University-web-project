@@ -1,0 +1,22 @@
+version: '1'
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: example_db
+      MYSQL_USER: webprojectclient
+      MYSQL_PASSWORD: password
+  server:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: mysql://webprojectclient:password@db/example_db

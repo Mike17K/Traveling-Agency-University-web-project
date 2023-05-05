@@ -1,12 +1,17 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const path = require('path');
-require('./config/database');
-const helpers = require('./components/hbsHelpers');
-const session = require('express-session');
-const flash = require('connect-flash');
+import {connect, disconnect} from './config/database.mjs';
+connect();
+import express from 'express';
+import exphbs from 'express-handlebars';
+import path from 'path';
+
+import {router} from './routes/router.js';
+
+import {helper} from './components/hbsHelpers.js';
+import session from 'express-session';
+import flash from 'connect-flash';
+import cookieParser from 'cookie-parser';
 const app = express();
-const cookieParser = require('cookie-parser');
+
 /////////////////////////////////////////////////////////////////////////////////// fix the logic to have session !!!!!!!!!!!!!!!!!!!!!
 app.use(session({
   secret: 'my-secret-key',
@@ -22,7 +27,7 @@ app.use(flash());
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', './views');
 app.engine('.hbs', exphbs.engine({
     defaultLayout: 'main',
     extname: '.hbs',
@@ -30,13 +35,13 @@ app.engine('.hbs', exphbs.engine({
     partialsDir: [
         path.join(app.get('views'), 'partials')
     ],
-    helpers
+    helper
 }));
 app.set('view engine', '.hbs');
 
 app.use(express.urlencoded());
 
-app.use(require('./routes/router'));
+app.use(router);
 app.use(express.static('public'));
 
 app.listen(3000, () => {

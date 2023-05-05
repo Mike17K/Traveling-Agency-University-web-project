@@ -1,6 +1,7 @@
-const {validateUser,addUser} = require('../config/database');
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+import { loginPipe } from './piplines.js';
+
+export const router = express.Router();
 
 let isLogedIn = true;
 
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
 }
 );
 
-router.get('/signin', (req, res) => {
+router.get('/signin', (req, res, next) => {
     res.render('pages/signin', {style:'signin.css',title:"login page",script:"signin.js",isLogedIn:false,alertMessage: req.flash('alertMessage') });
     
 });
@@ -24,37 +25,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-router.post('/logingIn', (req, res) => {
-    // make here the logic for loging in here
-    // console.log(req.body);
-    validateUser(req.body).then(
-        isLogedInRes=>{
-        if (isLogedInRes) {
-            isLogedIn = true;
-            res.redirect('/');
-        } else {
-            req.flash('alertMessage', 'Error loging in')
-            res.redirect('/signin');
-        }
-    }
-    );
-});
-
-router.post('/registeruser', (req, res) => {
-    // make here the logic
-    addUser(req.body).then(
-        isLogedInRes=>{
-        if (isLogedInRes) {
-            isLogedIn = true;
-            res.redirect('/');
-        } else {
-            req.flash('alertMessage', 'Error singin up')
-            res.redirect('/signup');
-        }
-    }
-    );
-});
-
+router.post('/logingIn', loginPipe);
 
 router.get('/Beaches', (req, res) => {
     // fetch data from server 
@@ -94,7 +65,3 @@ router.get('/Beaches', (req, res) => {
     res.render('pages/beaches', {style:'beaches.css',title:"home page",data:data,script:"beaches.js"});
 }
 );
-
-
-
-module.exports = router;

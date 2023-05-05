@@ -32,3 +32,68 @@ error: Client does not support authentication protocol requested by server; cons
 solution:
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 flush privileges;
+
+## Dockerize
+
+### Build The Image
+
+```
+docker build -t web-project .
+
+```
+
+### Run Container
+
+```
+docker run -d -p 3000:3000 web-project
+```
+
+```
+docker exec -it {containerid} /bin/sh
+```
+
+### Create Network
+
+create the network
+
+```
+docker network create my-network
+```
+
+running the sql container
+
+```
+docker run -d --name mysql-container --network my-network -e MYSQL_ROOT_PASSWORD=password mysql:latest
+```
+
+run the container of the express
+
+```
+docker run -d --name my-app-container --network my-network my-app-image:latest
+```
+
+Create a connection to the database with using the container of the sql
+
+const connection = mysql.createConnection({
+host: 'mysql-container', // name of the MySQL container in the network
+port: 3306, // default MySQL port
+user: 'root',
+password: 'password',
+database: 'WebProjectDb'
+});
+
+with .env
+
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=password
+DB_NAME=mydatabase
+
+require('dotenv').config();
+
+const connection = mysql.createConnection({
+host: process.env.DB_HOST,
+user: process.env.DB_USER,
+password: process.env.DB_PASSWORD,
+database: process.env.DB_NAME
+});

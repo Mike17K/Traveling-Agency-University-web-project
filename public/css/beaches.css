@@ -46,6 +46,8 @@ margin-top: 50px;
 }
 
 .beach-item{
+    cursor: pointer;
+    
     width:40%;
     border-radius: 10px;
     border: 1px solid rgb(28, 44, 44);

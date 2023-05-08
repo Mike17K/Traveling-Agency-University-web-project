@@ -1,0 +1,20 @@
+<img src="{{data.src}}" alt="image of the beach" />
+<div class="discription">
+  {{data.discription}}
+</div>
+
+<div id="comment-section-wrapper">
+  <div id="comment-list">
+    {{#each comments}}
+      <div class="comment-wrapper" id="{{this.id}}">
+        <div class="username">{{this.username}}</div>
+        <div class="text">{{this.content}}</div>
+        <div class="reaction-section">
+          <div class="likes">{{this.likes}}</div>
+          <div class="replies">{{this.replies}}</div>
+        </div>
+      </div>
+    {{/each}}
+
+  </div>
+</div>

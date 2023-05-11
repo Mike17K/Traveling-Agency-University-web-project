@@ -5,6 +5,9 @@
     --pink: #AE445A;
     --yellow: #F39F5A;
     --white: #E8BCB9;
+
+    margin: 0;
+    padding: 0;
 }
 
 .bg-black{

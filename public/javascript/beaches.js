@@ -1,3 +1,6 @@
+document.querySelector("#beaches").classList.add("target");
+
+
 document.querySelector('.page-description').addEventListener("click", (event) => {
     const e = document.querySelector('.map');
 

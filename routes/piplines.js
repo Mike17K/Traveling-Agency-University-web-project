@@ -82,23 +82,28 @@ export const beachPage = (req, res) => {
     const beach_id = req.query.page;
 
     // fetch the data
-    const data = {
-        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaTZkVmyelTI1lyMjxSWxh6wWjiBHN4KEDyQ&usqp=CAU",
-        discription: "discription testing .... "
-    }
+    let data = getBeaches()[0];
+    data = { ...data, beachtitle: data.title };
+
+    console.log(data);
+
     const comments = [
         {
             id: 0,
-            username: 'mike',
-            content: 'test loremf sa sakhfd',
+            icon: 2,
+            username: 'Mike Kaipis',
+            content: 'Υπέροχο νησάκι με πεύκα, ωραία γαλαζοπράσινα νερά κι ένα μικρό beach bar με τις στοιχειώδεις ανέσεις. Η μεγαλύτερη ατραξιόν όμως είναι τα παγώνια και τα ελάφια που πλησιάζουν τον κόσμο χωρίς να φοβούνται. Μοναδική εμπειρία!',
             likes: 3,
-            replies: 5,
+            replies: 1,
+            date: `5 minutes ago`,
         },
         {
             id: 1,
-            username: 'mike',
-            content: 'test loremf sa sakhfd',
+            icon: 3,
+            username: 'George Kaipis',
+            content: 'Το νησί πολυ όμορφο η εξυπηρετηση όμως αισχρή.Το προσωπικό αγενέστατο και οι τιμές στον θεό. (15€ για ένα ζευγάρι ξαπλώστρες σε μαγαζί σελφ σέρβις και 10€ για δυο καφέδες). Το τοπίο πολυ όμορφο τα νερά τέλεια αλλά το καταστηματακι άθλιο.',
             likes: 3,
+            date: `15 minutes ago`,
             replies: 5,
         }];
 

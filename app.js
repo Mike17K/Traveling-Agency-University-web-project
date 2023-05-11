@@ -21,7 +21,7 @@ app.use(session({
     cookie: {
         httpOnly: true,
         sameSite: true,
-        maxAge: 600000 // Time is in miliseconds
+        maxAge: 1000000 // Time is in miliseconds
     },
     // store: new MemoryStore({ checkPeriod: 86400000 })
 }

@@ -1,5 +1,11 @@
 CREATE DATABASE IF NOT EXISTS WebProjectDb;
 USE WebProjectDb;
+DROP table events;
+DROP table reaction;
+DROP table respond;
+DROP table comment;
+DROP table posts;
+DROP table users;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
@@ -45,9 +51,9 @@ ADD CONSTRAINT FK_enevts_post FOREIGN KEY (post_id) REFERENCES posts (id);
 ALTER TABLE comment
 ADD CONSTRAINT FK_comment_post FOREIGN KEY (post_id) REFERENCES posts (id);
 ALTER TABLE respond
-ADD CONSTRAINT FK_comment_id FOREIGN KEY (comment_id) REFERENCES posts (id);
+ADD CONSTRAINT FK_comment_id FOREIGN KEY (comment_id) REFERENCES comment (id);
 ALTER TABLE respond
-ADD CONSTRAINT FK_respond_id FOREIGN KEY (respond_id) REFERENCES posts (id);
+ADD CONSTRAINT FK_respond_id FOREIGN KEY (respond_id) REFERENCES comment (id);
 ALTER TABLE reaction
 ADD CONSTRAINT FK_comment_id FOREIGN KEY (comment_id) REFERENCES comment (id);
 ALTER TABLE reaction

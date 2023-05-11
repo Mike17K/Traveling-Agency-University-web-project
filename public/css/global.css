@@ -1,15 +1,52 @@
-.c-1{
- background-color: #B2A4FF !important;
+*{
+    --black: #1D1A39;
+    --purple: #451952;
+    --dark-red: #662549;
+    --pink: #AE445A;
+    --yellow: #F39F5A;
+    --white: #E8BCB9;
 }
-.c-2{
-    background-color: #FFB4B4 !important;
-    
-}
-.c-3{
-    background-color: #FFDEB4 !important;
-    
-}
-.c-4{
-    background-color: #FDF7C3 !important;
 
+.bg-black{
+    background-color: var(--black);
 }
+.c-black{
+    color: var(--black);
+}
+
+.bg-purple{
+    background-color: var(--purple);
+}
+.c-purple{
+    color: var(--purple);
+}
+
+.bg-dark-red{
+    background-color: var(--dark-red);
+}
+.c-dark-red{
+    color: var(--dark-red);
+}
+
+.bg-pink{
+    background-color: var(--pink);
+}
+.c-pink{
+    color: var(--pink);
+}
+
+.bg-yellow{
+background-color: var(--yellow);
+}
+.c-yellow{
+color: var(--yellow);
+}
+
+.bg-white{
+background-color: var(--white);
+}
+.c-white{
+color: var(--white);
+}
+
+

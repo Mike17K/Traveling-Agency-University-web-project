@@ -1,15 +1,16 @@
 import mysql from 'mysql';
 
 // Create a connection to the database
-
 export const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
+  port: 3307, // Specify the port of the Docker container
+  user: 'client1',
   password: 'password',
   database: 'WebProjectDb'
 });
 
-export async function connect(){
+
+export async function connect() {
   // Connect to the database
   return await new Promise((resolve, reject) => {
     connection.connect((err) => {
@@ -26,7 +27,7 @@ export async function connect(){
   );
 }
 
-export function disconnect(){
+export function disconnect() {
   // Close the connection
   connection.end();
 }

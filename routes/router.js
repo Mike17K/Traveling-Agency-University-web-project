@@ -9,6 +9,7 @@ import {
     beachesPage,
     accessBeachPipeLine
 } from './piplines.js';
+import { Api } from '../api/api.js';
 
 export const router = express.Router();
 
@@ -22,3 +23,7 @@ router.post('/logingIn', loginPipe);
 router.post('/registeruser', registerPipe);
 router.get('/signup', signup);
 router.get('/logout', logout);
+
+router.post('/api/addlike', Api.addlike);
+router.post('/api/addcomment', Api.addcomment);
+router.post('/api/test', Api.test);

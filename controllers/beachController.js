@@ -1,8 +1,9 @@
 import { getBeaches } from '../config/db_functions.mjs';
 
 
-export function getBeachController(id) {
+export function getBeachController(beach_id) {
     let data = getBeaches();
+    data = data[`${beach_id}`];
     data = { ...data, beachtitle: data.title };
     return data;
 }

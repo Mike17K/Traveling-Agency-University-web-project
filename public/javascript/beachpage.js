@@ -25,3 +25,73 @@ beaches_cards.forEach(card => {
     }
     )
 })
+
+
+// add the add like logic
+const like_btns = document.querySelectorAll('.like-btn');
+like_btns.forEach(btn => {
+    const comment_id = btn.closest(".comment-wrapper").getAttribute("id");
+
+    btn.addEventListener('click', (e) => {
+        // add class liked to all liked comments by the user TODO
+        btn.classList.toggle("liked");
+        document.querySelector(`.comment-wrapper[id='${comment_id}'] .dislike-btn`).classList.remove("disliked");
+
+        fetch('/api/addlike', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                comment_id: comment_id,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // update the likes
+                const likes = document.querySelector(`#likes-count-${comment_id}`);
+                likes.innerHTML = data.likescount;
+            }
+            )
+    }
+    )
+}
+)
+
+// add the add dislike logic
+const dislike_btns = document.querySelectorAll('.dislike-btn');
+dislike_btns.forEach(btn => {
+    const comment_id = btn.closest(".comment-wrapper").getAttribute("id");
+    btn.addEventListener('click', (e) => {
+        // add class liked to all liked comments by the user TODO
+        btn.classList.toggle("disliked");
+
+        document.querySelector(`.comment-wrapper[id='${comment_id}'] .like-btn`).classList.remove("liked");
+
+
+        /*
+        fetch('/api/removelike', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                comment_id: comment_id,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // update the likes
+                const likes = document.querySelector(`#likes-count-${comment_id}`);
+                likes.innerHTML = data.likescount;
+            }
+            )
+            */
+
+    }
+    )
+}
+)
+

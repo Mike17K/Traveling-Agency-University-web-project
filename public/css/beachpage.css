@@ -163,6 +163,14 @@
     text-align: center;
 }
 
+.liked{
+    background-image: url('/images/like-active.png') !important; 
+}
+
+.disliked{
+    background-image: url('/images/thumbs-down-active.png') !important; 
+}
+
 .likes-count{
     font-size: 14px;
     font-weight: 400;

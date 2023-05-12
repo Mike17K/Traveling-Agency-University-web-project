@@ -66,46 +66,24 @@ export const logout = (req, res) => {
 }
 
 
-import { getBeaches } from '../config/db_functions.mjs';
+import { getBeachesController } from '../controllers/beachesController.js';
+
 export const beachesPage = (req, res) => {
     let isLogedIn = (req.session.name === undefined) ? false : true;
-    // fetch data from server 
-    // and pass them to the render object
-
-    const data = getBeaches();
+    const data = getBeachesController();
 
     res.render('pages/beaches', { style: 'beaches.css', title: "home page", isLogedIn: isLogedIn, data: data, script: "beaches.js" });
 }
+
+
+import { getBeachController, getCommentsController } from '../controllers/beachController.js';
 
 export const beachPage = (req, res) => {
     let isLogedIn = (req.session.name === undefined) ? false : true;
     const beach_id = req.query.page;
 
-    // fetch the data
-    let data = getBeaches()[0];
-    data = { ...data, beachtitle: data.title };
-
-    console.log(data);
-
-    const comments = [
-        {
-            id: 0,
-            icon: 2,
-            username: 'Mike Kaipis',
-            content: 'Υπέροχο νησάκι με πεύκα, ωραία γαλαζοπράσινα νερά κι ένα μικρό beach bar με τις στοιχειώδεις ανέσεις. Η μεγαλύτερη ατραξιόν όμως είναι τα παγώνια και τα ελάφια που πλησιάζουν τον κόσμο χωρίς να φοβούνται. Μοναδική εμπειρία!',
-            likes: 3,
-            replies: 1,
-            date: `5 minutes ago`,
-        },
-        {
-            id: 1,
-            icon: 3,
-            username: 'George Kaipis',
-            content: 'Το νησί πολυ όμορφο η εξυπηρετηση όμως αισχρή.Το προσωπικό αγενέστατο και οι τιμές στον θεό. (15€ για ένα ζευγάρι ξαπλώστρες σε μαγαζί σελφ σέρβις και 10€ για δυο καφέδες). Το τοπίο πολυ όμορφο τα νερά τέλεια αλλά το καταστηματακι άθλιο.',
-            likes: 3,
-            date: `15 minutes ago`,
-            replies: 5,
-        }];
+    let data = getBeachController(beach_id);
+    let comments = getCommentsController(beach_id);
 
     res.render('pages/beachpage', { style: 'beachpage.css', title: "Beach Page", script: "beachpage.js", data: data, isLogedIn: isLogedIn, comments: comments });
 }

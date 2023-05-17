@@ -1,3 +1,4 @@
+<div id="post-id" key="{{data.id}}"></div>
 <h1>{{data.beachtitle}}</h1>
 <img class="beach-img" src="{{data.img}}" alt="image of the beach" />
 <div class="discription">
@@ -13,13 +14,18 @@
 <div id="comment-section-wrapper">
   <h2 id="comments-header-text">Κριτικές</h2>
 
-  <form method="post" class="critic-container">
+  <form class="critic-container">
     <input
       type="text"
+      id="critic-input"
       class="critic-input"
       placeholder="Γράψε μια κριτική..."
     />
-    <button type="submit" class="critic-submit-button">Υποβολή</button>
+    <button
+      id="critic-submit-button"
+      type="submit"
+      class="critic-submit-button"
+    >Υποβολή</button>
   </form>
 
   <div id="comment-list">
@@ -40,7 +46,9 @@
           <div class="text">{{this.content}}</div>
 
           <div class="reaction-section">
-            <div class="likes"><span class="like-icon like-btn"></span><span
+            <div class="likes"><span
+                class="like-icon like-btn {{liked}}"
+              ></span><span
                 class="likes-count"
                 id="likes-count-{{this.id}}"
               >{{this.likes}}</span><span

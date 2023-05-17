@@ -20,11 +20,42 @@ beaches_cards.forEach(card => {
         // take the key atribute of the card
         const id = card.getAttribute("key");
         // redirect to the page of this beach
-        window.location.href = "/beach?page=" + id;
+        window.location.href = "/beach/" + id;
 
     }
     )
 })
+
+// add comment logic
+const comment_list = document.querySelector("#comment-list");
+const comment_btn = document.querySelector("#critic-submit-button");
+const comment_input = document.querySelector("#critic-input");
+
+comment_btn.addEventListener('click', (e) => {
+    // get the id of the card
+    const comment = comment_input.value;
+    // take the key atribute of the card
+    const post_id = document.querySelector("#post-id").getAttribute("key");
+    console.log("post_id", post_id);
+    // redirect to the page of this beach
+    fetch('/api/addcomment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            content: comment,
+            post_id: post_id
+        }),
+    })
+}
+)
+
+
+
+
+
+
 
 
 // add the add like logic

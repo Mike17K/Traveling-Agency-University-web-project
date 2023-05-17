@@ -1,42 +1,82 @@
-<form class="login-form" action="/logingIn" method="post">
-  <legend>Log In</legend>
+<div class="alert-message">{{alertMessage}}</div>
 
-  <table>
-    <tr>
-      <td>
+<section class="vh-100">
+  <div class="col-md-8 offset-xl-1 mx-auto w-full">
+    <form action="/logingIn" method="post">
+      <div
+        class="w-full d-flex flex-row align-items-center justify-content-center justify-content-lg-start"
+      >
+        <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-facebook-f"></i>
+        </button>
 
-        <label for="username">Username</label>
-      </td>
-      <td>
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-twitter"></i>
+        </button>
+
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-linkedin-in"></i>
+        </button>
+      </div>
+
+      <div class="divider d-flex align-items-center my-4">
+        <p class="text-center fw-bold mx-3 mb-0">Or</p>
+      </div>
+
+      <!-- Email input -->
+      <div class="form-outline mb-4">
         <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Username"
+          type="email"
+          name="email"
+          id="email"
+          class="form-control form-control-lg"
+          placeholder="Enter a valid email address"
         />
+        <label class="form-label" for="email">Email address</label>
+      </div>
 
-      </td>
-    </tr>
-    <tr>
-
-      <td>
-        <label for="password">Password</label>
-
-      </td>
-      <td>
+      <!-- Password input -->
+      <div class="form-outline mb-3">
         <input
           type="password"
           name="password"
           id="password"
-          placeholder="Password"
+          class="form-control form-control-lg"
+          placeholder="Enter password"
+        />
+        <label class="form-label" for="password">Password</label>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <!-- Checkbox -->
+        <div class="form-check mb-0">
+          <input
+            class="form-check-input me-2"
+            type="checkbox"
+            value=""
+            id="rememberme"
+          />
+          <label class="form-check-label" for="rememberme">
+            Remember me
+          </label>
+        </div>
+        <a href="#!" class="text-body">Forgot password?</a>
+      </div>
+
+      <div class="text-center text-lg-start mt-4 pt-2">
+        <input
+          type="submit"
+          class="btn btn-primary btn-lg"
+          style="padding-left: 2.5rem; padding-right: 2.5rem;"
+          value="Login"
         />
 
-      </td>
+        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
+          <a href="/signup" class="link-danger">Register</a></p>
+      </div>
 
-    </tr>
-  </table>
+    </form>
+  </div>
 
-  <input type="submit" value="Log In" />
-
-  <div class="alert-message">{{alertMessage}}</div>
-</form>
+</section>

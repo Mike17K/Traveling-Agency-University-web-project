@@ -1,7 +1,6 @@
-import { validateUser, addUser } from '../config/db_functions.mjs';
+import { validateUser, addUser } from '../models/mysql/db_functions.mjs';
 
 export const loggedIn = (req, res, next) => {
-    console.log();
     if (req.session.name === undefined) {
         res.redirect('/signin');
     }
@@ -19,9 +18,10 @@ export const home = (req, res) => {
 
 export const loginPipe = [
     (req, res, next) => {
-        validateUser({ username: req.body.username, password: req.body.password }).then(isLogedInRes => {
+        validateUser({ username: req.body.email, password: req.body.password }).then(isLogedInRes => {
             if (isLogedInRes) {
                 req.session.name = 'session-update';
+                req.session.username = req.body.email;
                 next();
             } else {
                 req.flash('alertMessage', 'Error loging in')
@@ -39,6 +39,7 @@ export const registerPipe = [
         addUser(req.body.username, req.body.password).then(isLogedInRes => {
             if (isLogedInRes) {
                 req.session.name = 'session-update';
+                req.session.username = req.body.username;
                 next();
             } else {
                 req.flash('alertMessage', 'Error loging in')
@@ -66,24 +67,28 @@ export const logout = (req, res) => {
 }
 
 
-import { getBeachesController } from '../controllers/beachesController.js';
+import { getBeaches } from '../controllers/beachesController.js';
 
 export const beachesPage = (req, res) => {
     let isLogedIn = (req.session.name === undefined) ? false : true;
-    const data = getBeachesController();
+    const data = getBeaches();
 
     res.render('pages/beaches', { style: 'beaches.css', title: "home page", isLogedIn: isLogedIn, data: data, script: "beaches.js" });
 }
 
 
-import { getBeachController, getCommentsController } from '../controllers/beachController.js';
+import { getBeach, getComments, getUserIdByName } from '../controllers/beachController.js';
 
-export const beachPage = (req, res) => {
+export async function beachPage(req, res) {
+
     let isLogedIn = (req.session.name === undefined) ? false : true;
-    const beach_id = req.query.page;
+    const post_id = req.params.id;
 
-    let data = getBeachController(beach_id);
-    let comments = getCommentsController(beach_id);
+    let user_id = getUserIdByName(req.session.username);
+
+    let data = await getBeach(post_id);
+    let comments = await getComments(user_id, post_id);
+    console.log("comments:", comments);
 
     res.render('pages/beachpage', { style: 'beachpage.css', title: "Beach Page", script: "beachpage.js", data: data, isLogedIn: isLogedIn, comments: comments });
 }

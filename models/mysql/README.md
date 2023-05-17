@@ -27,6 +27,8 @@ now u are loged in the mysql shell
 change the root password
 
 ```
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 
 create user 'client1'@'%' identified with mysql_native_password by 'password';

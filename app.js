@@ -1,4 +1,4 @@
-import { connect, disconnect } from './config/database.mjs';
+import { connect, disconnect } from './models/mysql/database.mjs';
 connect();
 import express from 'express';
 import exphbs from 'express-handlebars';
@@ -10,6 +10,8 @@ import { helper } from './components/hbsHelpers.js';
 import session from 'express-session';
 import flash from 'connect-flash';
 import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+
 const app = express();
 
 /////////////////////////////////////////////////////////////////////////////////// fix the logic to have session !!!!!!!!!!!!!!!!!!!!!
@@ -27,6 +29,7 @@ app.use(session({
 }
 ));
 app.use(flash());
+app.use(bodyParser.json());
 
 ///////////////////////////////////////////////////////////////////////////////////
 

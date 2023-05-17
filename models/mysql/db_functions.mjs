@@ -30,7 +30,6 @@ export async function addUser(name, password) {
       if (error) {
         console.error('Error adding user.');
         reject(err);
-        throw error;
       }
       console.log('User added successfully.');
       resolve(true);
@@ -46,7 +45,6 @@ export async function deleteUser(id) {
       if (error) {
         console.error('Error deleting user.');
         reject(err);
-        throw error;
       }
       console.log('User deleted successfully.');
       resolve(true);
@@ -61,7 +59,6 @@ export async function addEvent(name, description, date, time, location, image, p
       if (error) {
         console.error('Error adding event.');
         reject(error);
-        throw error;
       }
       console.log('Event added successfully.');
       resolve(true);
@@ -77,7 +74,7 @@ export async function deleteEvent(id) {
       if (error) {
         console.error('Error deleting event.');
         reject(error);
-        throw error;
+
       }
       console.log('Event deleted successfully.');
       resolve(true);
@@ -94,7 +91,7 @@ export async function addPost(name, description, date, time, location) {
       if (error) {
         console.error('Error adding post.');
         reject(error);
-        throw error;
+
       }
       console.log('Post added successfully.');
       resolve(true);
@@ -110,7 +107,7 @@ export async function deletePost(id) {
       if (error) {
         console.error('Error deleting post.');
         reject(error);
-        throw error;
+
       }
       console.log('Post deleted successfully.');
       resolve(true);
@@ -126,7 +123,7 @@ export async function addComment(content, post_id, user_id) {
       if (error) {
         console.error('Error adding comment.');
         reject(error);
-        throw error;
+
       }
       console.log('Comment added successfully.');
       resolve(true);
@@ -142,7 +139,7 @@ export async function deleteComment(id) {
       if (error) {
         console.error('Error deleting comment.');
         reject(error);
-        throw error;
+
       }
       console.log('Comment deleted successfully.');
       resolve(true);
@@ -158,7 +155,7 @@ export async function addRespond(comment_id, respond_id) {
       if (error) {
         console.error('Error adding respond.');
         reject(error);
-        throw error;
+
       }
       console.log('Respond added successfully.');
       resolve(true);
@@ -174,7 +171,7 @@ export async function deleteRespond(id) {
       if (error) {
         console.error('Error deleting respond.');
         reject(error);
-        throw error;
+
       }
       console.log('Respond deleted successfully.');
       resolve(true);
@@ -190,7 +187,7 @@ export async function addReaction(content, comment_id, user_id) {
       if (error) {
         console.error('Error adding reaction.');
         reject(error);
-        throw error;
+
       }
       console.log('Reaction added successfully.');
       resolve(true);
@@ -206,7 +203,7 @@ export async function deleteReaction(id) {
       if (error) {
         console.error('Error deleting reaction.');
         reject(error);
-        throw error;
+
       }
       console.log('Reaction deleted successfully.');
       resolve(true);
@@ -217,7 +214,7 @@ export async function deleteReaction(id) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // functions for spesific queries
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-import beaches from '../public/content_data/beaches.js';
+import beaches from '../../public/content_data/beaches.js';
 
 export function getBeaches() {
   return beaches;
@@ -230,7 +227,7 @@ export function getBeaches() {
       if (error) {
         console.error('Error deleting reaction.');
         reject(error);
-        throw error;
+        
       }
       console.log('Reaction deleted successfully.');
       resolve(true);

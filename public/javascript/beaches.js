@@ -40,7 +40,7 @@ beaches_cards.forEach(card => {
         // take the key atribute of the card
         const id = card.getAttribute("key");
         // redirect to the page of this beach
-        window.location.href = "/beach?page=" + id;
+        window.location.href = "/beach/" + id;
 
     }
     )

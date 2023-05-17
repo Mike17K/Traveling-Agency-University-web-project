@@ -1,5 +1,5 @@
-import { getBeaches } from '../config/db_functions.mjs';
+import { getBeaches as getAl } from '../models/mysql/db_functions.mjs';
 
-export function getBeachesController() {
-    return getBeaches();
+export function getBeaches() {
+    return getAl();
 }

@@ -15,7 +15,7 @@ services:
     networks:
       - app-network
     ports:
-      - "3307:3306"
+      - "3307:3306" # this should be removed in production for security reasons
 
   server:
     build: .

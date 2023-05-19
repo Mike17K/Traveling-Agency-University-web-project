@@ -217,21 +217,10 @@ export async function deleteReaction(id) {
 import beaches from '../../public/content_data/beaches.js';
 
 export function getBeaches() {
+  // TODO: get posts from database
+  // id, name,img ,title,organized,location,description,direction
+
   return beaches;
 
-  /*
-  return await new Promise((resolve, reject) => {
-    const sql = `DELETE FROM reaction WHERE id = ?`;
-    const values = [id];
-    connection.query(sql, values, (error, results, fields) => {
-      if (error) {
-        console.error('Error deleting reaction.');
-        reject(error);
-        
-      }
-      console.log('Reaction deleted successfully.');
-      resolve(true);
-    });}
-    );
-    */
+
 }

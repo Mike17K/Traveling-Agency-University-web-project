@@ -1,5 +1,21 @@
 ### Run
 
+With docker compose we are making it easy just have docker installed and running
+and type the following command after cloning the project to your machine
+
+```
+$ docker-compose build
+$ docker-compose up
+```
+
+and to stop it
+
+```
+$ docker compose down
+```
+
+### if u dont have docker
+
 u have to have a local mysql database running with the name **WebProjectDb** and
 a table users as defined in the /config/db_setup.sql
 

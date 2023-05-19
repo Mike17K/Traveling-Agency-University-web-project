@@ -67,11 +67,11 @@ export const logout = (req, res) => {
 }
 
 
-import { getBeaches } from '../controllers/beachesController.js';
+import { getPosts } from '../controllers/beachesController.js';
 
-export const beachesPage = (req, res) => {
+export async function beachesPage(req, res) {
     let isLogedIn = (req.session.name === undefined) ? false : true;
-    const data = getBeaches();
+    const data = await getPosts(10);
 
     res.render('pages/beaches', { style: 'beaches.css', title: "home page", isLogedIn: isLogedIn, data: data, script: "beaches.js" });
 }

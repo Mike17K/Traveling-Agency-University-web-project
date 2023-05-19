@@ -87,7 +87,13 @@ export class Api {
         }
 
         // add comment
-        await addComment(content, post_id, user_id)
+        try {
+            await addComment(content, parseInt(post_id), user_id)
+        }
+        catch (err) {
+            console.log(err);
+        }
+
         //console.log("comment added: ", content, " post id: ", post_id, " user id: ", user_id);
 
         res.redirect(`/beach/${post_id}`);

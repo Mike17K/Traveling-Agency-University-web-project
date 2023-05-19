@@ -84,11 +84,13 @@ export async function beachPage(req, res) {
     let isLogedIn = (req.session.name === undefined) ? false : true;
     const post_id = req.params.id;
 
-    let user_id = getUserIdByName(req.session.username);
+    let user_id = await getUserIdByName(req.session.username);
 
     let data = await getBeach(post_id);
+    data = { ...data, post_id: post_id };
+
     let comments = await getComments(user_id, post_id);
-    console.log("comments:", comments);
+    //console.log("comments:", comments);
 
     res.render('pages/beachpage', { style: 'beachpage.css', title: "Beach Page", script: "beachpage.js", data: data, isLogedIn: isLogedIn, comments: comments });
 }

@@ -1,4 +1,4 @@
-<div id="post-id" key="{{data.id}}"></div>
+<div id="post-id" key="{{data.post_id}}"></div>
 <h1>{{data.beachtitle}}</h1>
 <img class="beach-img" src="{{data.img}}" alt="image of the beach" />
 <div class="discription">
@@ -47,7 +47,7 @@
 
           <div class="reaction-section">
             <div class="likes"><span
-                class="like-icon like-btn {{liked}}"
+                class="like-icon like-btn {{this.liked}}"
               ></span><span
                 class="likes-count"
                 id="likes-count-{{this.id}}"

@@ -25,6 +25,7 @@ router.get('/signup', signup);
 router.get('/logout', logout);
 
 router.post('/api/addlike', Api.addLike);
+router.post('/api/removelike', Api.removeLike);
 router.post('/api/addcomment', Api.addComment);
 
 // testing

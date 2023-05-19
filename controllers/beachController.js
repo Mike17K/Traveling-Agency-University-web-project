@@ -121,38 +121,11 @@ export function getBeach(post_id) {
 }
 
 export async function getComments(user_id, post_id) { // fix this next !
-
-    const comments = [
-        {
-            id: 1,
-            icon: 2,
-            username: 'Mike Kaipis',
-            content: 'Υπέροχο νησάκι με πεύκα, ωραία γαλαζοπράσινα νερά κι ένα μικρό beach bar με τις στοιχειώδεις ανέσεις. Η μεγαλύτερη ατραξιόν όμως είναι τα παγώνια και τα ελάφια που πλησιάζουν τον κόσμο χωρίς να φοβούνται. Μοναδική εμπειρία!',
-            likes: 3,
-            date: `5 minutes ago`,
-            replies: 1,
-        },
-        {
-            id: 2,
-            icon: 3,
-            username: 'George Kaipis',
-            content: 'Το νησί πολυ όμορφο η εξυπηρετηση όμως αισχρή.Το προσωπικό αγενέστατο και οι τιμές στον θεό. (15€ για ένα ζευγάρι ξαπλώστρες σε μαγαζί σελφ σέρβις και 10€ για δυο καφέδες). Το τοπίο πολυ όμορφο τα νερά τέλεια αλλά το καταστηματακι άθλιο.',
-            likes: 3,
-            date: `15 minutes ago`,
-            replies: 5,
-        }];
-
-
-    "   SELECT count(*) from reaction where comment_id=1;#(likes) "
-    "   SELECT count(*) from respond where respond_id=1; #replies "
-    "   SELECT comment.id,icon,name as username,content,date from comment join users on comment.user_id = users.id ; "
-
-
     try {
         const q = 'SELECT id,content,user_id,date FROM comment WHERE post_id = ?';
         const values = [post_id];
         const res = await query(q, values);
-        console.log("The comments are:", res);
+        //console.log("The comments are:", res);
 
         if (res === "ERROR") {
             console.log("ERROR GETTING COMMENTS");
@@ -161,9 +134,8 @@ export async function getComments(user_id, post_id) { // fix this next !
 
         // get icon, username for eatch comment
         for (let i = 0; i < res.length; i++) {
-            const user_id = res[i].user_id;
             const q = 'SELECT icon,name as username FROM users WHERE id = ?';
-            const values = [user_id];
+            const values = [res[i].user_id];
             const user = await query(q, values);
             res[i] = { ...res[i], ...user[0] };
         }
@@ -193,6 +165,7 @@ export async function getComments(user_id, post_id) { // fix this next !
             const q = 'SELECT * FROM reaction WHERE user_id = ? AND comment_id = ?';
             const values = [user_id, comment_id];
             let liked = await query(q, values);
+            //console.log("liked", liked);
             if (liked.length === 0) {
                 liked = undefined;
             } else {
@@ -202,7 +175,7 @@ export async function getComments(user_id, post_id) { // fix this next !
             res[i] = { ...res[i], liked: liked };
         }
 
-        console.log("The comments are:", res);
+        //console.log("The comments are:", res);
         return res;
     } catch (error) {
         console.log(error);

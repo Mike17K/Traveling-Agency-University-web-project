@@ -96,5 +96,3 @@ export async function beachPage(req, res) {
 }
 
 export const accessBeachPipeLine = [loggedIn, beachPage]
-
-export const accessBeachPipeLine = [loggedIn, beachPage]

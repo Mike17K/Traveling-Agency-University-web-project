@@ -14,6 +14,8 @@ if (process.env.PRODUCTION == 1) {
     database: process.env.MYSQL_DATABASE,
     password: process.env.MYSQL_PASSWORD
   });
+  connection.config.charset = 'utf8mb4';
+
 } else {
   // use the local instanse of mysql
   connection = mysql.createConnection({
@@ -23,6 +25,8 @@ if (process.env.PRODUCTION == 1) {
     database: 'WebProjectDb',
     password: 'password'
   });
+  connection.config.charset = 'utf8mb4';
+
 }
 
 

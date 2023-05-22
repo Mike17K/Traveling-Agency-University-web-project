@@ -9,6 +9,15 @@ export const loggedIn = (req, res, next) => {
     }
 };
 
+export const isAdmin = (req, res, next) => {
+    if (req.session.name === "Admin") {
+        next();
+    }
+    else {
+        res.redirect('/');
+    }
+};
+
 
 export const home = (req, res) => {
     let isLogedIn = (req.session.name === undefined) ? false : true;
@@ -21,6 +30,12 @@ export const loginPipe = [
         validateUser({ username: req.body.email, password: req.body.password }).then(isLogedInRes => {
             if (isLogedInRes) {
                 req.session.name = 'session-update';
+                if (req.body.email === 'admin' && req.body.password === 'password') {
+                    req.session.name = 'Admin';
+                    console.log("admin loged in");
+                } else {
+                    console.log("user loged in");
+                }
                 req.session.username = req.body.email;
                 next();
             } else {
@@ -73,6 +88,8 @@ export async function beachesPage(req, res) {
     let isLogedIn = (req.session.name === undefined) ? false : true;
     const data = await getPosts(10);
 
+    console.log(data);
+
     res.render('pages/beaches', { style: 'beaches.css', title: "home page", isLogedIn: isLogedIn, data: data, script: "beaches.js" });
 }
 
@@ -96,3 +113,14 @@ export async function beachPage(req, res) {
 }
 
 export const accessBeachPipeLine = [loggedIn, beachPage]
+
+
+
+
+
+export async function adminPage(req, res) {
+    let isLogedIn = (req.session.name === undefined) ? false : true;
+    res.render('pages/adminpage', { style: 'adminpage.css', title: "Admin Page", script: "adminpage.js", isLogedIn: isLogedIn });
+}
+
+export const adminPipeLine = [loggedIn, isAdmin, adminPage]

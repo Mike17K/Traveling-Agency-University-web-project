@@ -65,6 +65,16 @@ ALTER USER 'root' @'localhost' IDENTIFIED BY 'password';
 create user 'client1' @'%' identified with mysql_native_password by 'password';
 grant all privileges on *.* to 'client1' @'%';
 flush privileges;
+INSERT INTO users (
+        id,
+        name,
+        password
+    )
+VALUES (
+        1,
+        "admin",
+        "password"
+    );
 -- ADD DATA TO TABLES
 --    // posts -> id , name , description , location as direction
 --    // events -> name as title, image as img , location, discription as organized

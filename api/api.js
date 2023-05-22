@@ -1,6 +1,6 @@
 import { validateUser, addUser, deleteUser, addEvent, deleteEvent, addPost, deletePost, addComment, deleteComment, addRespond, deleteRespond, addReaction, deleteReaction } from '../models/mysql/db_functions.mjs';
 import { getLike, getUserIdByName, getReactionId, getComments, getLikes } from '../controllers/beachController.js';
-
+import { getLastPostId } from '../controllers/beachesController.js';
 export class Api {
     static async addLike(req, res) {
         /////////////////////////////////////////////////// fix
@@ -99,6 +99,34 @@ export class Api {
         res.redirect(`/beach/${post_id}`);
 
     }
+
+    static async addPost(req, res) {
+        const { img_url, title, organized, description, location, direction } = req.body;
+
+        try {
+            await addPost("Αίγινα", description, null, null, direction);
+
+            // take the id of the last post
+            const post_id = await getLastPostId();
+
+            await addEvent(title, organized, null, null, location, img_url, post_id);
+
+
+
+            return res.json({
+                message: "Post Added"
+            });
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+        return res.json({
+            message: "Nope"
+        });
+
+    }
+
 
     static test(req, res) {
         console.log("test");

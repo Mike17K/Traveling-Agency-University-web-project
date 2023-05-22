@@ -105,7 +105,6 @@ export async function getLikes(comment_id) {
     }
 }
 
-
 // getComments(post_id)
 
 
@@ -113,9 +112,20 @@ export async function getLikes(comment_id) {
 
 
 export function getBeach(post_id) {
+    console.log("getBeach", post_id);
+
     let data = getBeaches();
-    post_id = 1 // fix it this has to be pointing to post not a beach
-    data = data[`${post_id}`];
+
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].id === post_id) {
+            data = data[i];
+            break;
+        }
+    }
+
+    console.log("data: ", data);
+    // it will probably throw errors if the data is not found because of the data.title
+
     data = { ...data, beachtitle: data.title };
     return data;
 }

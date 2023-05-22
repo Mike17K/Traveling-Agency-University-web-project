@@ -214,13 +214,14 @@ export async function deleteReaction(id) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // functions for spesific queries
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-import beaches from '../../public/content_data/beaches.js';
 
 export function getBeaches() {
   // TODO: get posts from database
   // id, name,img ,title,organized,location,description,direction
 
-  return beaches;
+
+
+  return;
 
 
 }

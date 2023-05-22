@@ -1,0 +1,162 @@
+.post-add{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px hsl(0, 0%, 63%);
+
+    display: flex;
+    flex-direction: column;
+}
+input{
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px hsl(0, 0%, 63%);
+}
+#post-add-button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px hsl(0, 0%, 63%);
+    background-color: hsl(147, 65%, 43%);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+
+.beach-item{
+    margin: 0 auto;
+    
+
+    cursor: pointer;
+    
+    width:40%;
+    border-radius: 10px;
+    border: 1px solid rgb(28, 44, 44);
+    overflow: hidden;
+    
+    box-shadow: 2px 2px 4px hsl(0, 0%, 63%);
+}
+
+.beach-item:hover .title{
+    text-shadow: 0px 0px 2px hsl(228, 100%, 55%);
+}
+
+.beach-item:hover{
+    box-shadow: 2px 2px 8px hsl(228, 100%, 55%);
+}
+
+.beach-item>.image{
+    height: 60%;
+    width: 100%;
+
+    border-radius: 10px 10px 0 0;
+}
+
+.text-wrapper{
+    padding: 20px;
+    font-size: 12px;
+    line-height: 8px;
+}
+
+.card-top-part-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.text-wrapper .title{
+    color:hsl(147, 65%, 43%);
+    font-size: 20px;
+}
+
+.location-icon{
+    width: 20px;
+    height: 20px;
+    background-image: url('../images/placeholder.png');
+    background-size: contain;
+}
+
+.card-middle-part-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.organized{
+    font-size: 10px;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.direction{
+    text-align: end;
+}
+
+
+
+
+
+
+
+
+.result-content-section-title,
+.inner-content-section-title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.beach-img{
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+}
+
+#map{
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+#comments-header-text{
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 20px;
+    
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.info{
+    margin-top:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.location,
+.organized{
+    font-weight: 200;
+}

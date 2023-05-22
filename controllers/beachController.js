@@ -111,23 +111,22 @@ export async function getLikes(comment_id) {
 
 
 
-export function getBeach(post_id) {
-    console.log("getBeach", post_id);
+export async function getBeachByPostId(post_id) {
 
-    let data = getBeaches();
+    try {
+        let sql = "select * from events where post_id=?"
+        const result = await query(sql, [post_id]);
 
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].id === post_id) {
-            data = data[i];
-            break;
+        if (result === "ERROR") {
+            console.log("ERROR GETTING BEACH");
+            return {};
         }
+
+        return result[0];
     }
-
-    console.log("data: ", data);
-    // it will probably throw errors if the data is not found because of the data.title
-
-    data = { ...data, beachtitle: data.title };
-    return data;
+    catch (error) {
+        console.log(error);
+    }
 }
 
 export async function getComments(user_id, post_id) { // fix this next !

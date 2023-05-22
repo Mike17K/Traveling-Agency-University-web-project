@@ -82,7 +82,7 @@ export const logout = (req, res) => {
 }
 
 
-import { getPosts } from '../controllers/beachesController.js';
+import { getPosts, getPost } from '../controllers/beachesController.js';
 
 export async function beachesPage(req, res) {
     let isLogedIn = (req.session.name === undefined) ? false : true;
@@ -94,7 +94,7 @@ export async function beachesPage(req, res) {
 }
 
 
-import { getBeach, getComments, getUserIdByName } from '../controllers/beachController.js';
+import { getBeachByPostId, getComments, getUserIdByName } from '../controllers/beachController.js';
 
 export async function beachPage(req, res) {
 
@@ -103,10 +103,16 @@ export async function beachPage(req, res) {
 
     let user_id = await getUserIdByName(req.session.username);
 
-    let data = await getBeach(post_id);
-    data = { ...data, post_id: post_id };
+    let post = await getPost(parseInt(post_id));
+    console.log("post:", post);
 
-    let comments = await getComments(user_id, post_id);
+    let event = await getBeachByPostId(parseInt(post_id));
+    console.log("event:", event);
+
+    let data = { beachtitle: event.name, img: event.image, organized: event.description, location: event.location, description: post.description, post_id: post_id };
+    console.log("data:", data);
+
+    let comments = await getComments(user_id, parseInt(post_id));
     //console.log("comments:", comments);
 
     res.render('pages/beachpage', { style: 'beachpage.css', title: "Beach Page", script: "beachpage.js", data: data, isLogedIn: isLogedIn, comments: comments });

@@ -54,4 +54,11 @@ export async function getPosts(limit) {
     return result;
 }
 
+export async function getPost(id) {
+    let sql = "SELECT * FROM posts WHERE id = ?"
+    const result = await query(sql, [id]);
+    //console.log(result);
+
+    return result[0];
+}
 

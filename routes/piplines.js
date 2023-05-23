@@ -51,7 +51,7 @@ export const loginPipe = [
 
 export const registerPipe = [
     (req, res, next) => {
-        addUser(req.body.username, req.body.password).then(isLogedInRes => {
+        addUser(req.body.username, req.body.password, 1 + Math.floor(Math.random() * 5)).then(isLogedInRes => {
             if (isLogedInRes) {
                 req.session.name = 'session-update';
                 req.session.username = req.body.username;
@@ -105,6 +105,12 @@ export async function beachPage(req, res) {
 
     let post = await getPost(parseInt(post_id));
     console.log("post:", post);
+
+
+    if (post === undefined) {
+        res.redirect('/beaches');
+        return;
+    }
 
     let event = await getBeachByPostId(parseInt(post_id));
     console.log("event:", event);

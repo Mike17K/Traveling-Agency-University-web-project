@@ -1,30 +1,34 @@
-<div class="page-description c-3" >
-    Δείτε σε χάρτη όλες τις παραλίες της Αίγινας<span>+</span>
+<div class="page-description c-3">
+  Δείτε σε χάρτη όλες τις παραλίες της Αίγινας<span>+</span>
 </div>
 
 <div class="map hidden-map">
-    <div id="map"></div>
+  <div id="map"></div>
 </div>
-
 
 <div class="beaches-list-wrapper">
 
-{{#each data}}
+  {{#each data}}
 
-<div class="beach-item">
+    <div class="beach-item" key="{{this.id}}">
 
-<img src="{{this.img}}" alt="beach photo" class="image">
+      <img src="{{this.img}}" alt="beach photo" class="image" />
 
-<div class="text-wrapper">
+      <div class="text-wrapper">
+        <div class="card-top-part-wrapper">
+          <div class="title">{{this.title}}</div>
+          <div class="location-icon"></div>
+        </div>
+        <div class="card-middle-part-wrapper">
+          <div class="organized">{{this.organized}}</div>
+          <div class="direction">{{this.direction}}</div>
+        </div>
 
-<p class="title">{{this.title}}</p>
-<p class="organized">{{this.organized}}</p>
-<p class="location">{{this.location}}</p>
-<p class="direction">{{this.direction}}</p>
-</div>
+        <div class="location">{{this.location}}</div>
+      </div>
 
-</div>
+    </div>
 
-{{/each}}
+  {{/each}}
 
 </div>

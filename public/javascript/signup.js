@@ -1,0 +1,1 @@
+document.querySelector("#signup").classList.add("target");

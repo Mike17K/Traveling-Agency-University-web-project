@@ -1,0 +1,1 @@
+document.querySelector("#home").classList.add("target");

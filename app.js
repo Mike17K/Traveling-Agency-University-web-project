@@ -1,44 +1,40 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const path = require('path');
-const helpers = require('./components/hbsHelpers');
-const session = require('express-session');
+import { connect, disconnect } from './models/mysql/database.mjs';
+connect();
+import express from 'express';
+import exphbs from 'express-handlebars';
+import path from 'path';
+
+import { router } from './routes/router.js';
+
+import { helper } from './components/hbsHelpers.js';
+import session from 'express-session';
+import flash from 'connect-flash';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
 
 const app = express();
 
 /////////////////////////////////////////////////////////////////////////////////// fix the logic to have session !!!!!!!!!!!!!!!!!!!!!
+app.use(cookieParser('keyboard cat'));
 app.use(session({
-  secret: 'my-secret-key',
-  resave: false,
-  saveUninitialized: true
-}));
-
-app.post('/login', (req, res) => {
-    // TODO: validate login credentials
-    const username = req.body.username;
-  
-    // Set the user ID in the session
-    req.session.userId = username;
-  
-    res.send('Login successful');
-  });
-  
-  app.get('/dashboard', (req, res) => {
-    // Check if the user is logged in
-    if (!req.session.userId) {
-      res.redirect('/login');
-      return;
-    }
-  
-    // Render the dashboard page
-    res.render('dashboard', { username: req.session.userId });
-  });
-
+    secret: process.env.secret || "PynOjAuHetAuWawtinAytVunarAcjeBlybEshkEjVudyelwa",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        sameSite: true,
+        maxAge: 1000000 // Time is in miliseconds
+    },
+    // store: new MemoryStore({ checkPeriod: 86400000 })
+}
+));
+app.use(flash());
+app.use(bodyParser.json());
 
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', './views');
 app.engine('.hbs', exphbs.engine({
     defaultLayout: 'main',
     extname: '.hbs',
@@ -46,13 +42,16 @@ app.engine('.hbs', exphbs.engine({
     partialsDir: [
         path.join(app.get('views'), 'partials')
     ],
-    helpers
+    helper
 }));
 app.set('view engine', '.hbs');
 
-app.use(require('./routes/router'));
+app.use(express.urlencoded());
 app.use(express.static('public'));
+
+app.use(router);
 
 app.listen(3000, () => {
     console.log('Web server started at post 3000...');
 });
+

@@ -9,10 +9,10 @@
     display: none !important;
 }
 
-a{
-    color:white;
+a:hover{
+    color: var(--black);
+    background: var(--white);
 }
-
 
 .firstbox{
     width: 10%;
@@ -93,7 +93,10 @@ a{
 
 
 
-
+#lang{
+    color: white;
+    background: #000;
+}
 
 
 .navbar-wrapper{
@@ -130,7 +133,7 @@ a{
 
 .mynavbar>.target,
 .mainmiddle>.target{
- font-weight: bold;
+    background: white;
     color:black;
 }
 

@@ -1,0 +1,77 @@
+<div id="post-id" key="{{data.post_id}}"></div>
+<h1>{{data.beachtitle}}</h1>
+<img class="beach-img" src="{{data.img}}" alt="image of the beach" />
+<div class="discription">
+  {{data.description}}
+</div>
+<div class="info">
+  <div class="organized">{{data.organized}}</div>
+  <div class="location">{{data.location}}</div>
+</div>
+
+<div id="map"></div>
+
+<div id="comment-section-wrapper">
+  <h2 id="comments-header-text">Κριτικές</h2>
+
+  <form class="critic-container">
+    <input
+      type="text"
+      id="critic-input"
+      class="critic-input"
+      placeholder="Γράψε μια κριτική..."
+    />
+    <button
+      id="critic-submit-button"
+      type="submit"
+      class="critic-submit-button"
+    >Υποβολή</button>
+  </form>
+
+  <div id="comment-list">
+    {{#each comments}}
+      <div class="comment-wrapper" id="{{this.id}}">
+        <div
+          style="background-image: url('/images/profiles/profile-{{this.icon}}.png');"
+          class="user-icon"
+        ></div>
+        <div>
+
+          <div class="comment-head"><span
+              class="username"
+            >{{this.username}}</span>
+            <span class="time">{{this.date}}</span>
+          </div>
+
+          <div class="text">{{this.content}}</div>
+
+          <div class="reaction-section">
+            <div class="likes"><span
+                class="like-icon like-btn {{this.liked}}"
+              ></span><span
+                class="likes-count"
+                id="likes-count-{{this.id}}"
+              >{{this.likes}}</span><span
+                class="dislike-icon dislike-btn"
+              ></span><span class="comment-icon"></span></div>
+
+          </div>
+
+          <div class="replies-section">
+            <div
+              style="background-image: url('/images/profiles/profile-{{this.icon}}.png');"
+              alt="user icon"
+              class="user-icon-bottom"
+            ></div>
+            <div class="replies-link">•
+              <span class="content"><span>{{this.replies}}</span>
+                replies</span></div>
+          </div>
+
+        </div>
+
+      </div>
+    {{/each}}
+
+  </div>
+</div>

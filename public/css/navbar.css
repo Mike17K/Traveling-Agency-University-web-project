@@ -41,11 +41,16 @@ a:hover{
 .logo{
     display: inline-block;
     background-image: url('../images/logo.png');
+    background-size: cover;
+    background-position: center;
+    
     width: 80px;
     height: 80px;
+    
+    
     margin: 0 10px 0 0;
 
-    /* transform: translate(0,calc( -50% + 10px ) ); */
+    transform: translate(0,calc( -50% + 11px ) ); 
 }
 
 .mainmiddle{

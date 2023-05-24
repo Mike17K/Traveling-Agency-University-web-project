@@ -104,7 +104,7 @@ export class Api {
         const { img_url, title, organized, description, location, direction } = req.body;
 
         try {
-            await addPost("Αίγινα", description, null, null, direction);
+            await addPost("beach", description, null, null, direction);
 
             // take the id of the last post
             const post_id = await getLastPostId();
